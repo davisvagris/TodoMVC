@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>TodoMVC</title>
+    <link rel="stylesheet" href="assets/stylesheets/min.css">
+</head>
+<body ng-app="todoApp" ng-controller="TodoController">
+    <section id="todoapp">
+        <header id="header">
+            <h1>todos</h1>
+            <form ng-submit="add()">
+                <input id="new-todo" ng-model="title" placeholder="What needs to be done?" autofocus>
+            </form>
+        </header>
+
+        <section id="main" ng-show="todos.length">
+            <input id="toggle-all" type="checkbox" ng-model="all" ng-click="completedAll()">
+            <label for="toggle-all">Mark all as complete</label>
+            <ul id="todo-list">
+                <li ng-repeat="todo in todos | filter:todoFilter track by $index" ng-class="{ completed: todo.complete, editing: edit == todo.title }">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" ng-model="todo.complete">
+                        <label ng-dblclick="clickEdit(todo)">{{ todo.title }}</label>
+                        <button class="destroy" ng-click="remove(todo)"></button>
+                    </div>
+                    <form ng-submit="editForm(todo)">
+                        <input class="edit" ng-model="todo.title">
+                    </form>
+                </li>
+            </ul>
+        </section>
+
+        <footer id="footer" ng-show="todos.length">
+            <span id="todo-count">
+                <strong>{{ remain }}</strong>
+                <ng-pluralize count="remain" when="{ 'one': 'item left', 'other': 'items left' }"></ng-pluralize>
+            </span>
+
+            <ul id="filters">
+                <li>
+                    <a href="#/" ng-click="link('/')" ng-class="{ selected: path == '/' }">All</a>
+                </li>
+                <li>
+                    <a href="#/active" ng-click="link('/active')" ng-class="{ selected: path == '/active' }">Active</a>
+                </li>
+                <li>
+                    <a href="#/completed" ng-click="link('/completed')" ng-class="{ selected: path == '/completed' }">Completed</a>
+                </li>
+            </ul>
+
+            <button id="clear-completed" ng-show="completedSize > 0" ng-click="clearComplete()">Clear completed ({{ completedSize }})</button>
+        </footer>
+    </section>
+
+    <footer id="info">
+        <p>Double-click to edit a todo</p>
+        <p>Created by <a href="https://github.com/davisvagris">Dāvis Vagris</a></p>
+        <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+
+    <!--<script src="assets/vendors/angular/angular.min.js"></script>-->
+    <!--<script src="assets/javascripts/app.js"></script>-->
+    <!--<script src="assets/javascripts/services/todoStorage.js"></script>-->
+    <!--<script src="assets/javascripts/controllers/todo.js"></script>-->
+    <script src="assets/javascripts/all.min.js"></script>
+</body>
+</html>

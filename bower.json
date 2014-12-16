@@ -1,0 +1,12 @@
+{
+  "name": "TodoMVC",
+  "version": "0.0.1",
+  "authors": [
+    "Davis Vagris <davisvagris@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "todomvc-common": "latest"
+  }
+}
+
