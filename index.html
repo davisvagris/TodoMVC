@@ -18,10 +18,10 @@
             <input id="toggle-all" type="checkbox" ng-model="all" ng-click="completedAll()">
             <label for="toggle-all">Mark all as complete</label>
             <ul id="todo-list">
-                <li ng-repeat="todo in todos | filter:todoFilter track by $index" ng-class="{ completed: todo.complete, editing: edit == todo.title }">
+                <li ng-repeat="todo in todos | filter:todoFilter track by $index" ng-class="{ completed: todo.complete, editing: edit == $index }">
                     <div class="view">
                         <input class="toggle" type="checkbox" ng-model="todo.complete">
-                        <label ng-dblclick="clickEdit(todo)">{{ todo.title }}</label>
+                        <label ng-dblclick="clickEdit($index)">{{ todo.title }}</label>
                         <button class="destroy" ng-click="remove(todo)"></button>
                     </div>
                     <form ng-submit="editForm(todo)">

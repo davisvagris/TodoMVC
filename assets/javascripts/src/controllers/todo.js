@@ -42,9 +42,8 @@ app.controller('TodoController', function($scope, $location, todoStorage, filter
 
     // Edit task
     $scope.clickEdit = function(todo) {
-        if(!$scope.edit)
-        {
-            $scope.edit = todo.title;
+        if(!$scope.edit) {
+            $scope.edit = todo;
             return false;
         }
 

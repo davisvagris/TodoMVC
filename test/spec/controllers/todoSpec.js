@@ -48,8 +48,8 @@ describe('Controllers Todo', function() {
 
     it('Edit task', function() {
         scope.edit = false;
-        scope.clickEdit(data[0]);
-        expect(scope.edit).toEqual(data[0].title);
+        scope.clickEdit(0);
+        expect(scope.edit).toEqual(0);
     });
 
     it('Done Editing', function() {
